@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #D8BFD8, #E6E6FA, #B5A8E6, #ADD8E6, #FFC3A0, #FFAFBD, #FFD1DC);
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 450px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.5s ease-in-out;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #6A5ACD;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 14px;
+            color: #555;
+            text-align: left;
+            line-height: 1.8;
+        }
+        .agree-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #D8BFD8, #6A5ACD, #B5A8E6);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+            margin-top: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .agree-button:hover {
+            background: linear-gradient(135deg, #6A5ACD, #D8BFD8, #B5A8E6);
+            transform: scale(1.05);
+        }
+        .handwriting {
+            font-family: 'Dancing Script', cursive;
+            font-size: 18px;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Terms and Conditions</h2>
+        <p class="handwriting">By using this service, you agree to the following terms and conditions. Please read them carefully before proceeding.</p>
+        <p>1. Your use of our services is at your sole risk. The service is provided on an "as is" and "as available" basis.</p>
+        <p>2. We reserve the right to modify or terminate the service for any reason, without notice at any time.</p>
+        <p>3. You must not use our service for any illegal or unauthorized purpose.</p>
+        <p>4. Any breach or violation of the Terms will result in immediate termination of your services.</p>
+        <p class="handwriting">Thank you for using our service. Enjoy your experience!</p>
+        <button class="agree-button">I Agree</button>
+    </div>
+</body>
+</html>

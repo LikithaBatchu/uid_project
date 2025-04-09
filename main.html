@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .nav-links1 {
+            display: flex;
+            gap: 20px;
+        }
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .icons img {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        .wave-bar {
+            background-color: #98DED9;
+            height: 50px;
+            position: relative;
+        }
+        .wave-bar::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: url('wave-pattern.png') repeat-x;
+            bottom: 0;
+        }
+        .navbar2 {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 30px;
+        }
+        .nav-links2 {
+            display: flex;
+            gap: 100px;
+        }
+        .nav-links2 a{
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            border: 2px solid rgb(161, 82, 207);
+            padding: 5px;
+
+            border-radius: 10px;
+        }
+       
+
+        .background-div {
+            width: 100%;
+            height: 200px;
+            background-image: url('pur.avif'); /* Replace with your image URL */
+            background-size: cover; /* Adjusts the image to cover the div */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents image repetition */
+            text-align: center;
+            color: rgb(78, 52, 161);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .slider-container {
+            width: 100%;
+            max-width: 700px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Navigation Buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        .prev { left: 10px; }
+        .next { right: 10px; }
+
+        /* Dots */
+        .dots {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 5px;
+            background-color: gray;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: black;
+        }
+    </style>
+
+        
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+
+    <div class="navbar1">
+        <div class="nav-links1">
+            <a>.</a>
+            <a>.</a>
+        </div>
+        <div class="icons">
+            <img src="search_image.png" alt="Search">
+            <img src="heart-icon.png" alt="Favorites">
+            <img src="cart.jpeg" alt="Cart">
+            <a href="Geetha/sigh in.html">Sign In</a>
+        </div>
+    </div>
+
+    
+    <div class="navbar2">
+        <div class="logo">Ink & Pixel</div>
+        <div class="nav-links2">
+            <a href="Geetha/wedding.html">Wedding</a>
+            <a href="#">Baby & Kids</a>
+            <a href="#">Invitations</a>
+            <a href="#">Festivals</a>
+            <a href="#">Graduation</a>
+            <a href="#">Birthday Parties</a>
+            <a href="#">House warming</a>
+        </div>
+    </div>
+    <div class="background-div">
+        <br>
+        <br>
+        <span style="font-size: 40px;font-style: italic;">
+            10 % off  On  First  Order
+
+        </span>
+        <br><br>
+        Use code: LGNUID25 | Ends 10/10 | Exclusion apply
+    </div>
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide"><img src="baby_main.jpg" alt="Slide 1"></div>
+            <div class="slide"><img src="wedd.jpeg" alt="Slide 2"></div>
+            <div class="slide"><img src="fest_main.jpg" alt="Slide 3"></div>
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <!-- Dots -->
+    <div class="dots">
+        <span class="dot" onclick="jumpToSlide(0)"></span>
+        <span class="dot" onclick="jumpToSlide(1)"></span>
+        <span class="dot" onclick="jumpToSlide(2)"></span>
+    </div>
+    <script>
+        let currentIndex = 0;
+
+        function moveSlide(direction) {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+
+            currentIndex += direction;
+
+            if (currentIndex < 0) {
+                currentIndex = totalSlides - 1;
+            } else if (currentIndex >= totalSlides) {
+                currentIndex = 0;
+            }
+
+            updateSlider();
+        }
+
+        function jumpToSlide(index) {
+            currentIndex = index;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const slider = document.querySelector('.slider');
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            // Update dots
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentIndex].classList.add('active');
+        }
+
+        // Initialize first dot as active
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('.dot')[currentIndex].classList.add('active');
+        });
+    </script>
+   
+
+    <section id="features" class="py-16">
+        <div class="container mx-auto text-center px-6">
+            <h3 class="text-3xl font-bold mb-8">Why Choose Us?</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h4 class="text-xl font-semibold mb-2">Easy to Use</h4>
+                    <p class="text-gray-600">Our platform is designed to be simple and intuitive for everyone.</p>
+                </div>
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h4 class="text-xl font-semibold mb-2">High-Quality Designs</h4>
+                    <p class="text-gray-600">Choose from a variety of professionally designed templates.</p>
+                </div>
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h4 class="text-xl font-semibold mb-2">Quick Delivery</h4>
+                    <p class="text-gray-600">Get your customized cards delivered to your doorstep in no time.</p>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+</body>
+</html>

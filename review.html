@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="side.css">
+    <style>
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <body>
+        <a href="index.html" class="back-arrow">&#8592;</a>
+        <div class="container">
+            <h2>Review Form</h2>
+        <form id="contactForm" onsubmit="validate()">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            <span class="error" id="nameError"></span>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+            <span class="error" id="emailError"></span>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required placeholder="10-digit number">
+            <span class="error" id="phoneError"></span>
+
+
+            <label for="service">Service Needed:</label>
+            <select id="service" name="service" required>
+                <option value="">Select a Service</option>
+                <option value="Support">Customer Support</option>
+                <option value="Feedback">Feedback</option>
+                <option value="Complaint">Complaint</option>
+                <option value="Other">Other</option>
+            </select>
+            <span class="error" id="serviceError"></span>
+
+            <label for="message">Your Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <span class="error" id="messageError"></span>
+
+            
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function validate(){
+            alert("Review Successful!");
+            window.location.href ="index.html";
+        }
+
+    </script>
+
+
+</body>
+</html>

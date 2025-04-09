@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Mode</title>
+    <link rel="stylesheet" href="side.css">
+    <style>
+        .back-arrow {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            text-decoration: none;
+            color: black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <span class="back-arrow" onclick="goBack()">&#8592;</span>
+    <div class="container">
+        <h2>Payment Form</h2>
+        <form onsubmit="return validateForm(event)">
+            <label for="payment_mode">Select Payment Mode:</label>
+            <select id="payment_mode" name="payment_mode" onchange="togglePaymentFields()" required>
+                <option value="">--Select--</option>
+                <option value="card">Credit/Debit Card</option>
+                <option value="upi">UPI</option>
+            </select><br><br>
+            
+            <div id="card_details" style="display: none;">
+                <label for="card_number">Card Number:</label>
+                <input type="text" id="card_number" name="card_number" placeholder="Enter card number">
+                
+                <label for="expiry_date">Expiry Date:</label>
+                <input type="date" id="expiry_date" name="expiry_date">
+                
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="Enter CVV">
+            </div>
+            
+            <div id="upi_details" style="display: none;">
+                <label for="id_no">UPI ID:</label>
+                <input type="text" id="id_no" name="upi_id" placeholder="Enter UPI ID">
+            </div>
+            
+            <button type="submit">Pay Now</button>
+        </form>
+    </div>
+
+    <script>
+        function togglePaymentFields() {
+            var paymentMode = document.getElementById("payment_mode").value;
+            var cardDetails = document.getElementById("card_details");
+            var upiDetails = document.getElementById("upi_details");
+            
+            if (paymentMode === "card") {
+                cardDetails.style.display = "block";
+                upiDetails.style.display = "none";
+
+                document.getElementById("card_number").setAttribute("required", "true");
+                document.getElementById("expiry_date").setAttribute("required", "true");
+                document.getElementById("cvv").setAttribute("required", "true");
+
+                document.getElementById("id_no").removeAttribute("required");
+            } else if (paymentMode === "upi") {
+                cardDetails.style.display = "none";
+                upiDetails.style.display = "block";
+
+                document.getElementById("id_no").setAttribute("required", "true");
+
+                document.getElementById("card_number").removeAttribute("required");
+                document.getElementById("expiry_date").removeAttribute("required");
+                document.getElementById("cvv").removeAttribute("required");
+            } else {
+                cardDetails.style.display = "none";
+                upiDetails.style.display = "none";
+            }
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+
+            var paymentMode = document.getElementById("payment_mode").value;
+
+            if (paymentMode === "card") {
+                var cardNumber = document.getElementById("card_number").value;
+                var cvv = document.getElementById("cvv").value;
+
+                if (cardNumber.length < 16 || cardNumber.length > 19 || isNaN(cardNumber)) {
+                    alert("Enter a valid card number (16-19 digits).");
+                    return false;
+                }
+
+                if (cvv.length !== 3 || isNaN(cvv)) {
+                    alert("CVV must be a 3-digit number.");
+                    return false;
+                }
+            } 
+            else if (paymentMode === "upi") {
+                var upiId = document.getElementById("id_no").value;
+                var upiRegex = /^[a-zA-Z0-9.\-_]+@[a-zA-Z]{2,}$/;
+
+                if (!upiRegex.test(upiId)) {
+                    alert("Enter a valid UPI ID (e.g., username@bankname)");
+                    return false;
+                }
+            } 
+            else {
+                alert("Please select a payment mode.");
+                return false;
+            }
+
+            alert("Payment Successful!");
+
+            window.electron.navigate("index.html"); // Use secure navigation
+        }
+
+        function goBack() {
+            window.electron.navigate("index.html"); // Back button functionality
+        }
+    </script>
+</body>
+</html>
+<script>
+    const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('electron', {
+    navigate: (page) => ipcRenderer.send('navigate', page)
+});
+const { app, BrowserWindow, ipcMain } = require('electron');
+    const path = require('path');
+    
+    let mainWindow;
+    
+    app.whenReady().then(() => {
+        mainWindow = new BrowserWindow({
+            width: 800,
+            height: 600,
+            webPreferences: {
+                preload: path.join(__dirname, 'preload.js'), // Secure IPC
+                contextIsolation: true,
+                enableRemoteModule: false
+            }
+        });
+    
+        mainWindow.loadFile('payment.html');
+    });
+    
+    // Handle navigation request from renderer process
+    ipcMain.on("navigate", (event, page) => {
+        mainWindow.loadFile(page);
+});</script>

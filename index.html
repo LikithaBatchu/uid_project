@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ink & Pixel</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+</head>
+<body>
+
+    <div class="navbar1">
+        <div class="nav-links1">
+            <a>.</a>
+            <a>.</a>
+        </div>
+        <div class="icons">
+            <a href="Contactus.htm" onmouseover="on(this)" onmouseout="of(this)">Contact Us</a>
+            <a href="signin.html" onmouseover="on(this)" onmouseout="of(this)">Sign In</a>
+        </div>
+    </div>
+
+    
+    <div class="navbar2">
+        <div class="logo">Ink & Pixel</div>
+        <div class="nav-links2">
+            <a href="Geetha/wedding.html" onmouseover="over(this)" onmouseout="out(this)">Wedding</a>
+            <a href="html_36_birth/Babyshower.html" onmouseover="over(this)" onmouseout="out(this)">Baby & Kids</a>
+            <a href="html_36/Festival.html" onmouseover="over(this)" onmouseout="out(this)">Festivals</a>
+            <a href="Geetha/graduation.html" onmouseover="over(this)" onmouseout="out(this)">Graduation</a>
+            <a href="Geetha/birthday.html" onmouseover="over(this)" onmouseout="out(this)">Birthday Parties</a>
+            <a href="Geetha/housemorming.html" onmouseover="over(this)" onmouseout="out(this)">House warming</a>
+        </div>
+    </div>
+    <div class="background-div">
+        <br>
+        <br>
+        <span style="font-size: 40px;font-style: italic;font-weight: bold;">
+            10 % off  On  First  Order
+
+        </span>
+        <br><br>
+        Use code: LGNUID25 | Ends 10/10 | Exclusion apply
+    </div>
+    <div class="scroller-container">
+        <div class="scroller">
+            <div class="slides">
+                <!-- Using placeholder images from Unsplash -->
+                <img class="slide" src="wedding.jpg" alt="Slide 1">
+                
+                <img class="slide" src="birthday.avif" alt="Slide 2">
+                <img class="slide" src="babyshower.webp" alt="Slide 3">
+                <img class="slide" src="festive.webp" alt="Slide 4">
+            </div>
+        </div>
+        <div class="dots"></div>
+    </div>
+    <script>
+        const scroller = document.querySelector('.scroller');
+        const slides = document.querySelector('.slides');
+        const dotsContainer = document.querySelector('.dots');
+        const slideCount = document.querySelectorAll('.slide').length;
+        let currentIndex = 0;
+
+        // Create dots dynamically
+        for (let i = 0; i < slideCount; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+
+        const dots = document.querySelectorAll('.dot');
+
+        function goToSlide(index) {
+            if (index < 0 || index >= slideCount) return;
+            
+            currentIndex = index;
+            const slideWidth = scroller.offsetWidth;
+            slides.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+
+            // Update active dot
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        // Optional: Auto-scroll every 5 seconds
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slideCount;
+            goToSlide(currentIndex);
+        }, 5000);
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            goToSlide(currentIndex);
+        });
+    </script>
+    <div class="photocontainer">
+        <h1 style="text-align: center;font-size: 25px;">All time Favourite Collection</h1>
+        <p style="text-align: center;font-size: 20px;">Freshen up your space for the celebrations ahead.</p>
+        <div class="gallery">
+            <div class="gallery-item">
+                <a href="Geetha/wedding.html"><img src="wedd.jpg" alt="Wedd Piece"></a>
+                <div class="caption">Wedding</div>
+            </div>
+            <div class="gallery-item">
+                <a href="Geetha/graduation.html"><img src="grad.jpg" alt="grad"></a>
+                <div class="caption">Graduation</div>
+            </div>
+            <div class="gallery-item">
+                <a href="html_36_birth/Babyshower.html"><img src="babe.jpg" alt="baby"></a>
+                <div class="caption">Baby shower</div>
+            </div>
+            <div class="gallery-item">
+                <a href="Geetha/birthday.html"><img src="birth.jpg" alt="birth"></a>
+                <div class="caption">Birthday</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    
+
+    <section id="features" class="py-16">
+        <div class="container mx-auto text-center px-6" >
+            <h3 class="text-3xl font-bold mb-8" style="text-decoration: underline;">Why Choose Us?</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white shadow-md rounded-lg p-6" style="background-color: rgb(187, 118, 214);">
+                    <h4 class="text-xl font-semibold mb-2" style="text-decoration: underline;">Easy to Use</h4>
+                    <p class="text-gray-600">Our platform is designed to be simple and intuitive for everyone.</p>
+                </div>
+                <div class="bg-white shadow-md rounded-lg p-6" style="background-color: rgb(187, 118, 214);">
+                    <h4 class="text-xl font-semibold mb-2" style="text-decoration: underline;">High-Quality Designs</h4>
+                    <p class="text-gray-600">Choose from a variety of professionally designed templates.</p>
+                </div>
+                <div class="bg-white shadow-md rounded-lg p-6" style="background-color: rgb(187, 118, 214);">
+                    <h4 class="text-xl font-semibold mb-2" style="text-decoration: underline;">Quick Delivery</h4>
+                    <p class="text-gray-600">Get your customized cards delivered to your doorstep in no time.</p>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+</body>
+</html>
